@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 class App extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             data: [
                 {
@@ -20,13 +20,18 @@ class App extends React.Component {
                     "name":"Baz",
                     "age":"40"
                 }
-            ]
+            ],
+            header: "Header from state...",
+            content: "Content from state...",
+            headerProp: "Header from props...",
+            contentProp: "Content from props..."
         }
     }
     render() {
         return (
             <div>
-                <Header/>
+                <h1>{this.state.header}</h1>
+                <Header headerProp = {this.state.headerProp}/>
                 <table>
                     <tbody>
                         {this.state.data.map((person, i) => <TableRow key = {i} data = {person}/>)}
@@ -34,11 +39,17 @@ class App extends React.Component {
                 </table>
                 <h2>{1+1}</h2>
                 {/*Multi line comment...*/}
-                <Content/>
+                <Content contentProp = {this.state.contentProp}/>
+                <h2>{this.state.content}</h2>
             </div>
         )
     }
 }
+
+// App.defaultProps = {
+//     headerProp: "Header from props...",
+//     contentProp: "Content from props..."
+// }
 
 class Header extends React.Component {
     render() {
@@ -49,7 +60,8 @@ class Header extends React.Component {
         var i = 1;
         return (
             <div>
-                <h1 style = {myStyle}>{i == 1 ? 'True!' : 'False'}</h1>
+                <h1>{this.props.headerProp}</h1>
+                <h1 style = {myStyle}>{i === 1 ? 'True!' : 'False'}</h1>
             </div>
         )
     }
@@ -60,6 +72,7 @@ class Content extends React.Component {
         return (
             <div>
                 <p data-myattribute = "somevalue">This is the content!!!</p>
+                <h2>{this.props.contentProp}</h2>
             </div>
         )
     }
