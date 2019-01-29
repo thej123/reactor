@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class App extends React.Component {
     constructor(props) {
@@ -37,6 +38,14 @@ class App extends React.Component {
                         {this.state.data.map((person, i) => <TableRow key = {i} data = {person}/>)}
                     </tbody>
                 </table>
+                <h3>Array: {this.props.propArray}</h3>
+                <h3>Bool: {this.props.propBool ? "True..." : "False..."}</h3>
+                <h3>Func: {this.props.propFunc}</h3>
+                <h3>Number: {this.props.propNumber}</h3>
+                <h3>String: {this.props.propString}</h3>
+                <h3>Object: {this.props.propObject.objectName1}</h3>
+                <h3>Object: {this.props.propObject.objectName2}</h3>
+                <h3>Object: {this.props.propObject.objectName3}</h3>
                 <h2>{1+1}</h2>
                 {/*Multi line comment...*/}
                 <Content contentProp = {this.state.contentProp}/>
@@ -46,10 +55,34 @@ class App extends React.Component {
     }
 }
 
-// App.defaultProps = {
-//     headerProp: "Header from props...",
-//     contentProp: "Content from props..."
-// }
+// App.propTypes is used for props validation. If some of the props aren't using the correct type that we assigned, 
+// we will get a console warning.
+
+App.propTypes = {
+    propArray: PropTypes.array.isRequired,
+    propBool: PropTypes.bool.isRequired,
+    propFunc: PropTypes.func,
+    propNumber: PropTypes.number,
+    propString: PropTypes.object
+}
+
+// After the validation patterns, we will set App.defaultProps.
+
+App.defaultProps = {
+    // headerProp: "Header from props...",
+    // contentProp: "Content from props...",
+    propArray: [1,2,3,4,5],
+    propBool: true,
+    propFunc: function(e){return e},
+    propNumber: 1,
+    propString: "String value...",
+
+    propObject: {
+        objectName1: "objectValue1",
+        objectName2: "objectValue2",
+        objectName3: "objectValue3",
+    }
+}
 
 class Header extends React.Component {
     render() {
