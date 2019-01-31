@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 import ContentTwo from './ContentTwo';
+import Form from './Forms'
 
 class App extends React.Component {
     constructor(props) {
@@ -83,6 +84,8 @@ class App extends React.Component {
 
                 <button onClick = {this.setNewNumber}>INCREMENT</button>
                 <ContentTwo theNumber = {this.state.myNumber}></ContentTwo>
+
+                <Form></Form>
                 
                 <h3>Array: {this.props.propArray}</h3>
                 <h3>Bool: {this.props.propBool ? "True..." : "False..."}</h3>
