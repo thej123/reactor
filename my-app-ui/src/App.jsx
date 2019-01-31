@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 class App extends React.Component {
@@ -35,6 +36,8 @@ class App extends React.Component {
 
         //Sometimes we might want to update the component manually. This can be achieved using the forceUpdate() method.
         this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+
+        this.findDomNodeHandler = this.findDomNodeHandler.bind(this);
     };
 
     setStateHandler() {
@@ -46,6 +49,11 @@ class App extends React.Component {
 
     forceUpdateHandler() {
         this.forceUpdate()
+    }
+
+    findDomNodeHandler() {
+        let myDiv = document.getElementById('myDiv');
+        ReactDOM.findDOMNode(myDiv).style.color = 'green';
     }
     render() {
         return (
@@ -61,12 +69,13 @@ class App extends React.Component {
                 <button onClick = {this.setStateHandler}>SET STATE</button>
                 <h4>State Array: {this.state.datatwo}</h4>
 
+                <button onClick = {this.findDomNodeHandler}>FIND DOME NODE</button>
                 <button onClick = {this.forceUpdateHandler}>FORCE UPDATE</button>
-                <h4>Random Number: {Math.random()}</h4>
+                <div id = "myDiv">Random Number: {Math.random()}</div>
                 
                 <h3>Array: {this.props.propArray}</h3>
                 <h3>Bool: {this.props.propBool ? "True..." : "False..."}</h3>
-                <h3>Func: {this.props.propFunc}</h3>
+                <h3>Func: {this.props.propFunc("my function")}</h3>
                 <h3>Number: {this.props.propNumber}</h3>
                 <h3>String: {this.props.propString}</h3>
                 <h3>Object: {this.props.propObject.objectName1}</h3>
@@ -90,7 +99,7 @@ App.propTypes = {
     propBool: PropTypes.bool.isRequired,
     propFunc: PropTypes.func,
     propNumber: PropTypes.number,
-    propString: PropTypes.object
+    propString: PropTypes.string
 }
 
 // After the validation patterns, we will set App.defaultProps.
