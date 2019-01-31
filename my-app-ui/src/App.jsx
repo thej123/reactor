@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
+import ContentTwo from './ContentTwo';
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -24,6 +26,7 @@ class App extends React.Component {
                 }
             ],
             datatwo: [],
+            myNumber: 0,
             header: "Header from state...",
             content: "Content from state...",
             headerProp: "Header from props...",
@@ -38,6 +41,7 @@ class App extends React.Component {
         this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
 
         this.findDomNodeHandler = this.findDomNodeHandler.bind(this);
+        this.setNewNumber = this.setNewNumber.bind(this);
     };
 
     setStateHandler() {
@@ -55,6 +59,10 @@ class App extends React.Component {
         let myDiv = document.getElementById('myDiv');
         ReactDOM.findDOMNode(myDiv).style.color = 'green';
     }
+
+    setNewNumber() {
+        this.setState({myNumber: this.state.myNumber + 1});
+    }
     render() {
         return (
             <div>
@@ -71,7 +79,10 @@ class App extends React.Component {
 
                 <button onClick = {this.findDomNodeHandler}>FIND DOME NODE</button>
                 <button onClick = {this.forceUpdateHandler}>FORCE UPDATE</button>
-                <div id = "myDiv">Random Number: {Math.random()}</div>
+                <div id = "myDiv">Random Number: {Math.random()}</div><br/>
+
+                <button onClick = {this.setNewNumber}>INCREMENT</button>
+                <ContentTwo theNumber = {this.state.myNumber}></ContentTwo>
                 
                 <h3>Array: {this.props.propArray}</h3>
                 <h3>Bool: {this.props.propBool ? "True..." : "False..."}</h3>
