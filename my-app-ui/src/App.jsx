@@ -28,14 +28,25 @@ class App extends React.Component {
             headerProp: "Header from props...",
             contentProp: "Content from props..."
         }
-        this.setStateHandler = this.setStateHandler.bind(this)
+
+        //setState() method is used to update the state of the component. This method will not replace the state, 
+        //but only add changes to the original state.
+        this.setStateHandler = this.setStateHandler.bind(this);
+
+        //Sometimes we might want to update the component manually. This can be achieved using the forceUpdate() method.
+        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
     };
+
     setStateHandler() {
         let item = "setState..."
         let myArray = this.state.datatwo.slice();
             myArray.push(item);
         this.setState({datatwo: myArray})
     };
+
+    forceUpdateHandler() {
+        this.forceUpdate()
+    }
     render() {
         return (
             <div>
@@ -46,8 +57,13 @@ class App extends React.Component {
                         {this.state.data.map((person, i) => <TableRow key = {i} data = {person}/>)}
                     </tbody>
                 </table>
+                
                 <button onClick = {this.setStateHandler}>SET STATE</button>
                 <h4>State Array: {this.state.datatwo}</h4>
+
+                <button onClick = {this.forceUpdateHandler}>FORCE UPDATE</button>
+                <h4>Random Number: {Math.random()}</h4>
+                
                 <h3>Array: {this.props.propArray}</h3>
                 <h3>Bool: {this.props.propBool ? "True..." : "False..."}</h3>
                 <h3>Func: {this.props.propFunc}</h3>
@@ -56,6 +72,7 @@ class App extends React.Component {
                 <h3>Object: {this.props.propObject.objectName1}</h3>
                 <h3>Object: {this.props.propObject.objectName2}</h3>
                 <h3>Object: {this.props.propObject.objectName3}</h3>
+                
                 <h2>{1+1}</h2>
                 {/*Multi line comment...*/}
                 <Content contentProp = {this.state.contentProp}/>
