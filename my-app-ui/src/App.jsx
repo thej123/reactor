@@ -22,12 +22,20 @@ class App extends React.Component {
                     "age":"40"
                 }
             ],
+            datatwo: [],
             header: "Header from state...",
             content: "Content from state...",
             headerProp: "Header from props...",
             contentProp: "Content from props..."
         }
-    }
+        this.setStateHandler = this.setStateHandler.bind(this)
+    };
+    setStateHandler() {
+        let item = "setState..."
+        let myArray = this.state.datatwo.slice();
+            myArray.push(item);
+        this.setState({datatwo: myArray})
+    };
     render() {
         return (
             <div>
@@ -38,6 +46,8 @@ class App extends React.Component {
                         {this.state.data.map((person, i) => <TableRow key = {i} data = {person}/>)}
                     </tbody>
                 </table>
+                <button onClick = {this.setStateHandler}>SET STATE</button>
+                <h4>State Array: {this.state.datatwo}</h4>
                 <h3>Array: {this.props.propArray}</h3>
                 <h3>Bool: {this.props.propBool ? "True..." : "False..."}</h3>
                 <h3>Func: {this.props.propFunc}</h3>
