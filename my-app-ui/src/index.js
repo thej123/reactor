@@ -5,7 +5,7 @@ import App from "./App.jsx";
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-setTimeout(() => {
-    ReactDOM.unmountComponentAtNode(document.getElementById('root'));
-    ReactDOM.render(<App />, document.getElementById('root'));
-}, 10000)
+// setTimeout(() => {
+//     ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+//     ReactDOM.render(<App />, document.getElementById('root'));
+// }, 10000)
