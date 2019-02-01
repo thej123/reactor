@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ContentTwo from './ContentTwo';
 import Form from './Forms';
 import Menu from './Menu';
+import MyHOC from './myHOC';
 
 class App extends React.Component {
     constructor(props) {
@@ -72,7 +73,9 @@ class App extends React.Component {
                 <h1>{this.state.header}</h1>
                 <Header headerProp = {this.state.headerProp}/>
 
-                <Menu></Menu>\
+                Menu: <Menu></Menu>
+
+                myHOC: <MyHOC></MyHOC>
 
                 <table>
                     <tbody>
