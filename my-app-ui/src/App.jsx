@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 import ContentTwo from './ContentTwo';
-import Form from './Forms'
+import Form from './Forms';
+import Menu from './Menu';
 
 class App extends React.Component {
     constructor(props) {
@@ -64,14 +65,18 @@ class App extends React.Component {
     setNewNumber() {
         this.setState({myNumber: this.state.myNumber + 1});
     }
+    
     render() {
         return (
             <div>
                 <h1>{this.state.header}</h1>
                 <Header headerProp = {this.state.headerProp}/>
+
+                <Menu></Menu>\
+
                 <table>
                     <tbody>
-                        {this.state.data.map((person, i) => <TableRow key = {i} data = {person}/>)}
+                        {this.state.data.map((person, i) => <TableRow key = {i} componentData = {person}/>)}
                     </tbody>
                 </table>
                 
@@ -165,9 +170,9 @@ class TableRow extends React.Component {
     render() {
         return (
             <tr>
-                <td>{this.props.data.id}</td>
-                <td>{this.props.data.name}</td>
-                <td>{this.props.data.age}</td>
+                <td>{this.props.componentData.id}</td>
+                <td>{this.props.componentData.name}</td>
+                <td>{this.props.componentData.age}</td>
             </tr>
         );
     }
